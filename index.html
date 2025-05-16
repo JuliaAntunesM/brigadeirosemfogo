@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brigadeiro Sem Fogo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="chocolate-dots"></div>
+        <div class="header">
+            <img src="img/logo-brigadeiro.png" alt="Brigadeiro Sem Fogo" class="logo">
+            
+            <!-- Sistema de pontuação -->
+            <div class="coin-counter">
+                <div class="coin-icon">💰</div>
+                <div class="coin-amount" id="coin-amount">0</div>
+            </div>
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress" id="progress-bar-fill"></div>
+            </div>
+        </div>
+        
+        <!-- Pergunta 1 -->
+        <div class="question-container" id="question1">
+            <h1>Você está pronta para descobrir o <span class="highlight">segredo do brigadeiro sem fogo</span>?</h1>
+            <h2>Faça em 10 minutinhos e formato "disco voador" nunca mais!</h2>
+            
+            <a href="#question2" class="button pink" onclick="showQuestion('question2')">Estou pronta</a>
+        </div>
+        
+        <!-- Pergunta 2 -->
+        <div class="question-container hidden" id="question2">
+            <h1>Seus brigadeiros ficam na qualidade que você quer?</h1>
+            
+            <div class="options">
+                <div class="option" onclick="showQuestion('question3'); addCoins(10);">
+                    <div class="emoji">😩</div>
+                    <div class="option-text">Não, cada vez ficam de um jeito</div>
+                </div>
+                <div class="option" onclick="showQuestion('question3'); addCoins(10);">
+                    <div class="emoji">😐</div>
+                    <div class="option-text">As vezes sim, mas não sempre</div>
+                </div>
+                <div class="option" onclick="showQuestion('question3'); addCoins(10);">
+                    <div class="emoji">😢</div>
+                    <div class="option-text">Tenho muita dificuldade</div>
+                </div>
+                <div class="option" onclick="showQuestion('question3'); addCoins(10);">
+                    <div class="emoji">😄</div>
+                    <div class="option-text">Ficam sempre iguais</div>
+                </div>
+            </div>
+            
+            <div class="footer">
+            </div>
+        </div>
+        
+        <!-- Pergunta 3 -->
+        <div class="question-container hidden" id="question3">
+            <h1>Ele perde qualidade de um dia para o outro?</h1>
+            <h2>Já parou para pensar nisso?</h2>
+            
+            <div class="options">
+                <div class="option" onclick="showQuestion('question4'); addCoins(10);">
+                    <div class="emoji">😩</div>
+                    <div class="option-text">Sim</div>
+                </div>
+                <div class="option" onclick="showQuestion('question4'); addCoins(10);">
+                    <div class="emoji">😄</div>
+                    <div class="option-text">Não</div>
+                </div>
+            </div>
+            
+            <div class="footer">
+            </div>
+        </div>
+        
+        <!-- Pergunta 4 -->
+        <div class="question-container hidden" id="question4">
+            <h1>Após a embalagem, ele fica um pouco achatado?</h1>
+            <h2>97% das confeiteiras relatam que sim...</h2>
+            
+            <div class="options">
+                <div class="option" onclick="showQuestion('question5'); addCoins(10);">
+                    <div class="emoji">😩</div>
+                    <div class="option-text">Sim, eles mudam de formato</div>
+                </div>
+                <div class="option" onclick="showQuestion('question5'); addCoins(10);">
+                    <div class="emoji">😐</div>
+                    <div class="option-text">Eles não ficam redondinhos</div>
+                </div>
+                <div class="option" onclick="showQuestion('question5'); addCoins(10);">
+                    <div class="emoji">😄</div>
+                    <div class="option-text">Ficam perfeitos e duram por mais de 15 dias</div>
+                </div>
+            </div>
+            
+            <div class="footer">
+            </div>
+        </div>
+        
+        <!-- Pergunta 5 -->
+        <div class="question-container hidden" id="question5">
+            <h1>O tempo de preparo tem sido muito longo?</h1>
+            <h2>Tempo é dinheiro.</h2>
+            
+            <div class="options">
+                <div class="option" onclick="showQuestion('question6'); addCoins(15);">
+                    <div class="emoji">😩</div>
+                    <div>
+                        <div class="option-text">Em torno de 3 a 4 horas.</div>
+                        <div class="option-subtext">Eu fico bem cansada...</div>
+                    </div>
+                </div>
+                <div class="option" onclick="showQuestion('question6'); addCoins(10);">
+                    <div class="emoji">😐</div>
+                    <div>
+                        <div class="option-text">Mais de 4 horas de preparo.</div>
+                        <div class="option-subtext">Sei que posso melhorar e muito...</div>
+                    </div>
+                </div>
+                <div class="option" onclick="showQuestion('question6'); addCoins(20);">
+                    <div class="emoji">😄</div>
+                    <div>
+                        <div class="option-text">Em média 2 horas...</div>
+                        <div class="option-subtext">Em torno de 100/130 unidades...</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer">
+            </div>
+        </div>
+        
+        <!-- Página Camila -->
+        <div class="question-container hidden" id="question6">
+            <div class="profile-card">
+                <img src="img/camilaconfeiteira.jpeg" alt="Camila confeiteira" class="profile-image">
+                
+                <div class="profile-content">
+                    <h1>Prazer, me chamo Camila...</h1>
+                    <p>
+                        Ter filhos foi a <strong>melhor coisa que já aconteceu na minha vida</strong>, mas também me forçou aprender uma nova profissão, afinal, <strong>perdi meu antigo emprego</strong>.
+                    </p>
+                    <p>
+                        Foi aí então que comecei a <strong>vender brigadeiros que não vão ao fogo</strong>, hoje faturo <strong>R$15.000</strong> todos os meses e é isso que <strong>vou te ensinar agora</strong>.
+                    </p>
+                </div>
+            </div>
+            
+            <a href="#question7" class="button" onclick="showQuestion('question7')">Continuar</a>
+            
+            <div class="footer">
+            </div>
+        </div>
+        
+        <!-- Página Matéria -->
+        <div class="question-container hidden" id="question7">
+            <div class="news-header">
+                <div class="menu-icon">☰</div>
+                <div class="news-category">EMPREENDEDORISMO</div>
+                <div class="search-icon">🔍</div>
+            </div>
+            
+            <div class="news-content">
+                <h1>Conheça o "Brigadeiro Sem Fogo", o treinamento responsável por mulheres do Brasil todo mudarem de vida.</h1>
+                <p class="news-author">Matéria Por Alfredo Torres</p>
+                
+                <p class="news-paragraph">
+                    Camila, a criadora <strong>garante que qualquer mulher mesmo sem saber nada de doces</strong>, pode fazer no <strong>mínimo R$100,00 ao dia trabalhando em casa</strong>.
+                </p>
+                
+                <p class="news-paragraph">
+                    Tudo que você precisa é de <strong>1h do seu dia e R$ 10,00</strong> para os <strong>ingredientes</strong> para fazer seus <strong>primeiros R$100,00 amanhã mesmo</strong>.
+                </p>
+                
+                <img src="img/camilatrabalhando.jpeg" alt="Camila trabalhando" class="news-image">
+            </div>
+            
+            <a href="#question8" class="button" onclick="showQuestion('question8')">Continuar</a>
+            
+            <div class="footer">
+            </div>
+        </div>
+        
+        <!-- Pergunta 6 -->
+        <div class="question-container hidden" id="question8">
+            <h1>Gostaria que seus brigadeiros ficassem <span class="highlight">redondinhos por até 15 dias</span>?</h1>
+            
+            <div class="options">
+                <div class="option" onclick="showQuestion('question9'); addCoins(25);">
+                    <div class="emoji">😍</div>
+                    <div class="option-text">Quero muito</div>
+                </div>
+                <div class="option" onclick="showQuestion('question9'); addCoins(5);">
+                    <div class="emoji">👎</div>
+                    <div class="option-text">Não quero</div>
+                </div>
+            </div>
+            
+            <div class="footer">
+            </div>
+        </div>
+        
+        <!-- Pergunta 7 -->
+        <div class="question-container hidden" id="question9">
+            <h1>Você tem uma lata de leite condensado em casa?</h1>
+            
+            <div class="options">
+                <div class="option" onclick="showQuestion('question10'); addCoins(20);">
+                    <div class="emoji">🤩</div>
+                    <div class="option-text">Sim, pronta para começar.</div>
+                </div>
+                <div class="option" onclick="showQuestion('question10'); addCoins(15);">
+                    <div class="emoji">😍</div>
+                    <div class="option-text">Não, mas eu posso comprar.</div>
+                </div>
+                <div class="option" onclick="showQuestion('question10'); addCoins(10);">
+                    <div class="emoji">😢</div>
+                    <div class="option-text">Estou sem dinheiro.</div>
+                </div>
+            </div>
+            
+            <div class="footer">
+            </div>
+        </div>
+        
+        <!-- Pergunta 8 -->
+        <div class="question-container hidden" id="question10">
+            <h1>Quanto tempo disponível você tem por dia?</h1>
+            <h2>Seja sincera...</h2>
+            
+            <div class="options">
+                <div class="option" onclick="showQuestion('question11'); addCoins(30);">
+                    <div class="emoji">😄</div>
+                    <div class="option-text">2 horas</div>
+                </div>
+                <div class="option" onclick="showQuestion('question11'); addCoins(20);">
+                    <div class="emoji">🙂</div>
+                    <div class="option-text">Entre 30min e 1h</div>
+                </div>
+                <div class="option" onclick="showQuestion('question11'); addCoins(15);">
+                    <div class="emoji">😌</div>
+                    <div class="option-text">Menos de 30 minutos...</div>
+                </div>
+                <div class="option" onclick="showQuestion('question11'); addCoins(10);">
+                    <div class="emoji">😐</div>
+                    <div class="option-text">Nem eu sei...</div>
+                </div>
+            </div>
+            
+            <div class="footer">
+            </div>
+        </div>
+        
+        <!-- Resultado direto após as perguntas -->
+        <div class="question-container hidden" id="question11">
+            <h1 class="sale-title">Sua RECEITA está pronta!</h1>
+            <h2 class="sale-subtitle">Baseada no seu perfil, desenvolvemos um plano exclusivamente para você.</h2>
+            
+            <div class="results-container">
+                <div class="coins-earned">
+                    <div class="coins-earned-title">Você acumulou</div>
+                    <div class="coins-earned-amount">
+                        <span id="total-coins">0</span>
+                        <div class="coin-icon-large">💰</div>
+                    </div>
+                    <div class="coins-earned-message">Parabéns! Você ganhou um desconto especial!</div>
+                </div>
+                
+                <div class="sales-banner">
+                    <div class="banner-badge">Oferta Exclusiva</div>
+                    <h3>Brigadeiro Sem Fogo</h3>
+                    <div class="banner-tagline">Faça em apenas 10 minutos o que outras levam horas!</div>
+                </div>
+                
+                <div class="benefits">
+                    <h3 class="benefits-title">QUAIS BENEFÍCIOS VOU TER:</h3>
+                    
+                    <div class="benefits-grid-container">
+                        <div class="benefit-grid-item">
+                            <div class="benefit-check">✓</div>
+                            <div class="benefit-grid-title">MELHOR BRIGADEIRO DO MUNDO</div>
+                            <div class="benefit-grid-content">
+                                <p>Aprenda a fazer brigadeiros que <span class="highlight-pink">não vão ao fogo</span>, podem ser congelados e <span class="highlight-pink">não ficam achatados</span>.</p>
+                                <div class="benefit-image-container">
+                                    <img src="img/3.jpeg" alt="Brigadeiro perfeito" class="benefit-image">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-grid-item">
+                            <div class="benefit-check">✓</div>
+                            <div class="benefit-grid-title">+ DE 25 RECEITAS EXCLUSIVAS</div>
+                            <div class="benefit-grid-content">
+                                <p>Brigadeiros e decorações para você se destacar da concorrência e encantar seus clientes.</p>
+                                <div class="benefit-image-container">
+                                    <img src="img/4.jpeg" alt="Receitas exclusivas" class="benefit-image">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-grid-item">
+                            <div class="benefit-check">✓</div>
+                            <div class="benefit-grid-title">ECONOMIZE ATÉ 70% DO TEMPO</div>
+                            <div class="benefit-grid-content">
+                                <p>Com um método <span class="highlight-pink">5x mais rápido</span> que o tradicional, prepare mais brigadeiros em menos tempo.</p>
+                                <div class="benefit-image-container">
+                                    <img src="img/5.jpeg" alt="Economia de tempo" class="benefit-image">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-grid-item">
+                            <div class="benefit-check">✓</div>
+                            <div class="benefit-grid-title">SUPORTE EXCLUSIVO</div>
+                            <div class="benefit-grid-content">
+                                <p>Por 30 dias para tirar todas as suas dúvidas e garantir seu sucesso com os brigadeiros.</p>
+                                <div class="benefit-image-container">
+                                    <img src="img/6.jpeg" alt="Suporte exclusivo" class="benefit-image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bonus-section">
+                        <div class="bonus">BÔNUS ADICIONAL</div>
+                        
+                        <div class="benefits-grid-container">
+                            <div class="benefit-grid-item bonus-grid-item">
+                                <div class="benefit-check">✓</div>
+                                <div class="benefit-grid-title">BÔNUS - BALAS CARAMELIZADAS</div>
+                                <div class="benefit-grid-content">
+                                    <p>Aprenda a fazer PASSO A PASSO balas com cobertura de caramelo fininho e que não gruda!</p>
+                                    <div class="benefit-image-container">
+                                        <div class="benefit-icon">🍬</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="benefit-grid-item bonus-grid-item highlight-bonus">
+                                <div class="benefit-check">✓</div>
+                                <div class="benefit-grid-title">BÔNUS - ESTRATÉGIAS DE VENDAS</div>
+                                <div class="benefit-grid-content">
+                                    <p>Meu guia exclusivo com técnicas para vender mais e aumentar seu faturamento!</p>
+                                    <div class="benefit-image-container">
+                                        <div class="benefit-icon">💰</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-intro">
+                    <div class="gallery-intro-content">
+                        <h3>DIVERSIDADE DE RECEITAS</h3>
+                        <p>Com o <strong>Brigadeiro Sem Fogo</strong>, você pode criar dezenas de variações deliciosas que mantêm a forma perfeita e <span class="highlight-pink">encantam os clientes</span>.</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-section">
+                    <h3 class="gallery-title">VARIEDADE DE BRIGADEIROS SEM FOGO</h3>
+                    <p class="gallery-subtitle">Veja a perfeição e diversidade que você pode criar com nosso método:</p>
+                    
+                    <div class="gallery-container">
+                        <div class="gallery-item">
+                            <img src="img/2.jpeg" alt="Brigadeiros decorados personalizados" class="gallery-image">
+                            <div class="gallery-overlay">
+                                <div class="gallery-text">Brigadeiros decorados com desenhos personalizados</div>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="img/4.jpeg" alt="Brigadeiros de coco" class="gallery-image">
+                            <div class="gallery-overlay">
+                                <div class="gallery-text">Brigadeiros gourmets de coco que derretem na boca</div>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="img/5.jpeg" alt="Brigadeiros gourmet de doce de leite" class="gallery-image">
+                            <div class="gallery-overlay">
+                                <div class="gallery-text">Brigadeiros de doce de leite com topo requintado</div>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="img/6.jpeg" alt="Brigadeiro recheado com chocolate" class="gallery-image">
+                            <div class="gallery-overlay">
+                                <div class="gallery-text">Brigadeiros recheados com ganache cremosa</div>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="img/7.jpeg" alt="Brigadeiros granulados" class="gallery-image">
+                            <div class="gallery-overlay">
+                                <div class="gallery-text">Brigadeiros com cobertura crocante de chocolate</div>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="img/8.jpeg" alt="Brigadeiros decorados com cobertura" class="gallery-image">
+                            <div class="gallery-overlay">
+                                <div class="gallery-text">Brigadeiros gourmet com ganache cremosa no topo</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonials-section">
+                    <h3 class="testimonials-title">O QUE DIZEM NOSSAS ALUNAS:</h3>
+                    
+                    <div class="testimonials-carousel">
+                        <div class="carousel-container">
+                            <div class="carousel-track" id="testimonials-track">
+                                <div class="carousel-slide">
+                                    <div class="testimonial">
+                                        <div class="testimonial-header">
+                                            <img src="img/aluna1.jpeg" alt="Maria de Freitas" class="testimonial-img">
+                                            <strong>Maria de Freitas</strong>
+                                        </div>
+                                        <p>Adoro a Camila, nossos encontros semanais posso esclarecer todas minhas dúvidas e já estamos a 4 meses faturando mais de 6 mil reais constantemente....muito feliz</p>
+                                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="carousel-slide">
+                                    <div class="testimonial">
+                                        <div class="testimonial-header">
+                                            <img src="img/aluna2.jpeg" alt="Juliana Mendes" class="testimonial-img">
+                                            <strong>Juliana Mendes</strong>
+                                        </div>
+                                        <p>Eu fazia brigadeiro tradicional e demorava 3 horas para 100 unidades. Com o método sem fogo, faço em 40 minutos! Meu faturamento dobrou porque consigo atender mais clientes.</p>
+                                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="carousel-slide">
+                                    <div class="testimonial">
+                                        <div class="testimonial-header">
+                                            <img src="img/aluna3.jpeg" alt="Carla Oliveira" class="testimonial-img">
+                                            <strong>Carla Oliveira</strong>
+                                        </div>
+                                        <p>Comecei do zero! Não sabia nada de doces e hoje faturo R$3.500 por mês trabalhando apenas 3 dias na semana. O melhor é que não preciso ficar horas no fogão!</p>
+                                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="carousel-slide">
+                                    <div class="testimonial featured-testimonial">
+                                        <div class="testimonial-header">
+                                            <img src="img/aluna4.jpeg" alt="Ana Carolina Silva" class="testimonial-img">
+                                            <strong>Ana Carolina Silva</strong>
+                                        </div>
+                                        <p>"Minha vida mudou completamente! Comecei fazendo brigadeiros para complementar a renda e hoje tenho minha própria confeitaria. O método sem fogo economiza tanto tempo que consigo fazer o dobro de encomendas. Faturei R$8.500 no último mês!"</p>
+                                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="carousel-slide">
+                                    <div class="testimonial">
+                                        <div class="testimonial-header">
+                                            <img src="img/aluna5.jpeg" alt="Fernanda Moraes" class="testimonial-img">
+                                            <strong>Fernanda Moraes</strong>
+                                        </div>
+                                        <p>"Os brigadeiros ficam perfeitos e redondinhos por até 15 dias! Isso me permite fazer com antecedência, sem estresse. Já recebo encomendas para os próximos 2 meses!"</p>
+                                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="carousel-nav">
+                            <button class="carousel-prev" onclick="moveCarousel(-1)">❮</button>
+                            <div class="carousel-dots" id="carousel-dots"></div>
+                            <button class="carousel-next" onclick="moveCarousel(1)">❯</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="time-saving">
+                    <div class="time-icon">⏱️</div>
+                    <div class="time-content">
+                        <h3>ECONOMIZE SEU TEMPO!</h3>
+                        <p>Com o método <strong>Brigadeiro Sem Fogo</strong>, você pode preparar até <strong>150 brigadeiros em menos de 1 hora</strong>, enquanto no método tradicional levaria mais de 4 horas!</p>
+                    </div>
+                </div>
+                
+                <a href="#final" class="button pulse-button" onclick="showQuestion('final')">Quero começar agora</a>
+                
+                <div class="price">
+                    <div class="old-price">TUDO ISSO DE: R$247,00</div>
+                    <div class="new-price">POR APENAS R$ 37,00</div>
+                    <div class="payment-info">Pagamento único | Acesso imediato</div>
+                </div>
+                
+                <div class="guarantee">
+                    <img src="img/1.jpeg" alt="Camila" class="guarantee-img">
+                    <div class="guarantee-text">
+                        <div class="guarantee-title">Teste Seguro por 7 dias</div>
+                        <p>Desfrute de todo o conteúdo e da receita. Faça em casa e caso não resolva eu devolvo 100% do seu dinheiro, sem perguntas.</p>
+                    </div>
+                </div>
+                
+                <a href="#final" class="button pulse-button" onclick="showQuestion('final')">Quero começar agora</a>
+                
+                <div class="limited-offer">
+                    <div class="offer-icon">🔥</div>
+                    <div class="offer-text">Oferta por tempo limitado! Preço aumentará em breve.</div>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <p>© 2023 Brigadeiro Sem Fogo | Todos os direitos reservados</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Atualizar a barra de progresso com base na pergunta atual
+        function updateProgressBar(questionId) {
+            const totalQuestions = 10;
+            let currentQuestion = parseInt(questionId.replace('question', ''));
+            
+            if (currentQuestion > totalQuestions) {
+                currentQuestion = totalQuestions;
+            }
+            
+            const progressPercentage = (currentQuestion / totalQuestions) * 100;
+            document.getElementById('progress-bar-fill').style.width = progressPercentage + '%';
+        }
+        
+        function showQuestion(id) {
+            // Esconde todas as perguntas com animação
+            document.querySelectorAll('.question-container:not(.hidden)').forEach(el => {
+                el.style.opacity = 0;
+                setTimeout(() => {
+                    el.classList.add('hidden');
+                    // Mostra a pergunta solicitada com animação
+                    const newQuestion = document.getElementById(id);
+                    if (newQuestion) {
+                        newQuestion.classList.remove('hidden');
+                        newQuestion.style.opacity = 0;
+                        setTimeout(() => {
+                            newQuestion.style.opacity = 1;
+                            
+                            // Se for a página de resultados, inicia a animação de contagem
+                            if (id === 'question11') {
+                                animateCoinsCount();
+                                // Inicializa o carrossel de depoimentos
+                                initCarousel();
+                            }
+                        }, 50);
+                    }
+                }, 300);
+            });
+            
+            // Atualiza a barra de progresso
+            updateProgressBar(id);
+            
+            // Rola para o topo
+            window.scrollTo(0, 0);
+            
+            // Se for a última pergunta, pula para a análise
+            if (id === 'question10') {
+                setTimeout(() => {
+                    showQuestion('question11');
+                    // O valor total é atualizado na função animateCoinsCount
+                }, 1500);
+            }
+        }
+        
+        // Função para animar a contagem de moedas
+        function animateCoinsCount() {
+            const finalValue = parseInt(document.getElementById('coin-amount').textContent);
+            const totalCoinsElement = document.getElementById('total-coins');
+            let startValue = 0;
+            const duration = 2000; // 2 segundos
+            const frameRate = 30;
+            const totalFrames = (duration / 1000) * frameRate;
+            let currentFrame = 0;
+            
+            // Adiciona classe para efeito de celebração
+            document.querySelector('.coins-earned').classList.add('celebrating');
+            
+            // Função para animação da contagem
+            function countUp() {
+                currentFrame++;
+                const progress = currentFrame / totalFrames;
+                const currentCount = Math.floor(progress * finalValue);
+                
+                totalCoinsElement.textContent = currentCount;
+                
+                if (currentFrame < totalFrames) {
+                    requestAnimationFrame(countUp);
+                } else {
+                    totalCoinsElement.textContent = finalValue; // Garante o valor final exato
+                    
+                    // Adiciona efeito de destaque após a contagem terminar
+                    totalCoinsElement.classList.add('count-complete');
+                    setTimeout(() => {
+                        totalCoinsElement.classList.remove('count-complete');
+                    }, 1000);
+                    
+                    // Cria efeito de confete
+                    createConfetti();
+                }
+            }
+            
+            // Inicia a animação
+            requestAnimationFrame(countUp);
+        }
+        
+        // Carrossel de depoimentos
+        let currentSlide = 0;
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        function initCarousel() {
+            const track = document.getElementById('testimonials-track');
+            if (!track) return;
+            
+            const slides = track.querySelectorAll('.carousel-slide');
+            const dotsContainer = document.getElementById('carousel-dots');
+            
+            // Limpa os pontos existentes
+            dotsContainer.innerHTML = '';
+            
+            // Cria os pontos indicadores
+            for (let i = 0; i < slides.length; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+                dot.onclick = function() { goToSlide(i); };
+                dotsContainer.appendChild(dot);
+            }
+            
+            // Configura eventos de toque para dispositivos móveis
+            track.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+            
+            track.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+            
+            // Posiciona o primeiro slide
+            updateCarousel();
+            
+            // Auto-rotação do carrossel a cada 5 segundos
+            setInterval(() => {
+                moveCarousel(1);
+            }, 5000);
+        }
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            if (touchEndX < touchStartX - swipeThreshold) {
+                // Deslizar para a esquerda
+                moveCarousel(1);
+            }
+            if (touchEndX > touchStartX + swipeThreshold) {
+                // Deslizar para a direita
+                moveCarousel(-1);
+            }
+        }
+        
+        function moveCarousel(direction) {
+            const track = document.getElementById('testimonials-track');
+            if (!track) return;
+            
+            const slides = track.querySelectorAll('.carousel-slide');
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            
+            updateCarousel();
+        }
+        
+        function goToSlide(slideIndex) {
+            const track = document.getElementById('testimonials-track');
+            if (!track) return;
+            
+            const slides = track.querySelectorAll('.carousel-slide');
+            if (slideIndex >= 0 && slideIndex < slides.length) {
+                currentSlide = slideIndex;
+                updateCarousel();
+            }
+        }
+        
+        function updateCarousel() {
+            const track = document.getElementById('testimonials-track');
+            if (!track) return;
+            
+            // Move o track para mostrar o slide atual
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Atualiza os pontos indicadores
+            const dots = document.querySelectorAll('.carousel-dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+        
+        // Função para criar o efeito de confete
+        function createConfetti() {
+            const container = document.querySelector('.coins-earned');
+            const colors = ['#FFD700', '#FFA500', '#FF6347', '#FF69B4', '#00CED1', '#9370DB'];
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Posição inicial no centro da área de moedas
+                const rect = container.getBoundingClientRect();
+                const startX = rect.width / 2;
+                const startY = rect.height / 2;
+                
+                // Direção aleatória
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 50 + Math.random() * 100;
+                const tx = Math.cos(angle) * distance;
+                const ty = Math.sin(angle) * distance;
+                
+                // Cor aleatória
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Aplica estilos
+                particle.style.setProperty('--tx', `${tx}px`);
+                particle.style.setProperty('--ty', `${ty}px`);
+                particle.style.setProperty('--color', color);
+                particle.style.left = `${startX}px`;
+                particle.style.top = `${startY}px`;
+                
+                container.appendChild(particle);
+                
+                // Remove a partícula após a animação
+                setTimeout(() => {
+                    container.removeChild(particle);
+                }, 1000);
+            }
+        }
+        
+        function addCoins(amount) {
+            // Atualiza o contador de moedas
+            let coinAmountElement = document.getElementById('coin-amount');
+            let currentCoins = parseInt(coinAmountElement.textContent);
+            let newAmount = currentCoins + amount;
+            coinAmountElement.textContent = newAmount;
+            
+            // Adiciona efeito de destaque
+            coinAmountElement.classList.add('highlight');
+            setTimeout(() => {
+                coinAmountElement.classList.remove('highlight');
+            }, 500);
+            
+            // Cria o efeito de moeda flutuante
+            const coinPopup = document.createElement('div');
+            coinPopup.className = 'coin-popup';
+            coinPopup.textContent = '+' + amount + ' 💰';
+            
+            // Posiciona o popup próximo ao cursor (ou centro da tela em dispositivos móveis)
+            const mouseX = event ? event.clientX : window.innerWidth / 2;
+            const mouseY = event ? event.clientY : window.innerHeight / 2;
+            
+            coinPopup.style.left = mouseX + 'px';
+            coinPopup.style.top = mouseY + 'px';
+            
+            document.body.appendChild(coinPopup);
+            
+            // Remove o elemento após a animação
+            setTimeout(() => {
+                document.body.removeChild(coinPopup);
+            }, 1500);
+        }
+        
+        // Inicializa o quiz
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializa a barra de progresso
+            updateProgressBar('question1');
+            
+            // Garante que o contador de moedas comece em 0
+            document.getElementById('coin-amount').textContent = '0';
+            
+            // Animação do texto de carregamento
+            const loadingTexts = [
+                "Processando dados...",
+                "Analisando respostas...",
+                "Calculando perfil...",
+                "Preparando resultados..."
+            ];
+            let currentTextIndex = 0;
+            
+            function updateLoadingText() {
+                const loadingStatus = document.getElementById('loading-status');
+                if (loadingStatus) {
+                    currentTextIndex = (currentTextIndex + 1) % loadingTexts.length;
+                    loadingStatus.textContent = loadingTexts[currentTextIndex];
+                }
+            }
+            
+            // Atualiza o texto a cada 2 segundos
+            setInterval(updateLoadingText, 2000);
+        });
+    </script>
+</body>
+</html> 
