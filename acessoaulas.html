@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brigadeiro Sem Fogo - Área de Membros</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background-color: #f9f0f2;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #e6d1d8;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            max-width: 200px;
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e6187c;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .main {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+        }
+        
+        .menu {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        
+        .menu-title {
+            background-color: #e6187c;
+            color: white;
+            padding: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        .menu-items {
+            list-style: none;
+        }
+        
+        .menu-item {
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.3s;
+        }
+        
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        
+        .menu-item a {
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #444;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .menu-item a:hover {
+            background-color: #fce8ef;
+            color: #e6187c;
+        }
+        
+        .menu-item.active a {
+            background-color: #fce8ef;
+            color: #e6187c;
+            font-weight: 600;
+        }
+        
+        .content {
+            flex-grow: 1;
+        }
+        
+        .content-box {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+        }
+        
+        .welcome-box {
+            background-color: #e6187c;
+            color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+        }
+        
+        .welcome-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .welcome-text {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        .section-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #e6187c;
+            font-weight: 600;
+        }
+        
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .course-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .course-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+        
+        .course-content {
+            padding: 15px;
+        }
+        
+        .course-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .course-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .course-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #888;
+        }
+        
+        .course-button {
+            display: block;
+            background-color: #e6187c;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+        
+        .course-button:hover {
+            background-color: #c41068;
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            margin-bottom: 20px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+        
+        .recipe-card {
+            background-color: #fafafa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .recipe-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #e6187c;
+        }
+        
+        .recipe-description {
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .recipe-section {
+            margin-bottom: 15px;
+        }
+        
+        .recipe-section-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #666;
+        }
+        
+        .recipe-list {
+            padding-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .recipe-list li {
+            margin-bottom: 5px;
+            line-height: 1.5;
+        }
+        
+        .recipe-steps {
+            list-style-type: decimal;
+        }
+        
+        .recipe-tip {
+            background-color: #fce8ef;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-top: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .main {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="img/logo-brigadeiro.png" alt="Brigadeiro Sem Fogo" class="logo">
+            <div class="user-profile">
+                <div class="avatar">A</div>
+                <div class="user-name">Aluna</div>
+            </div>
+        </div>
+        
+        <div class="main">
+            <div class="sidebar">
+                <div class="menu">
+                    <div class="menu-title">Menu Principal</div>
+                    <ul class="menu-items">
+                        <li class="menu-item active"><a href="#"><span>🏠</span> Início</a></li>
+                        <li class="menu-item"><a href="#aulas"><span>📚</span> Aulas</a></li>
+                        <li class="menu-item"><a href="#receitas"><span>🧁</span> Receitas</a></li>
+                        <li class="menu-item"><a href="#boas-praticas"><span>✨</span> Boas Práticas</a></li>
+                        <li class="menu-item"><a href="#vendas"><span>💰</span> Como Vender</a></li>
+                        <li class="menu-item"><a href="#bonus"><span>🎁</span> Bônus</a></li>
+                        <li class="menu-item"><a href="#suporte"><span>💬</span> Suporte</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="content">
+                <div class="welcome-box">
+                    <h2 class="welcome-title">Bem-vinda ao Brigadeiro Sem Fogo!</h2>
+                    <p class="welcome-text">Estamos felizes em ter você aqui! Nesta área exclusiva para alunas, você encontrará todas as aulas, receitas e dicas especiais para se tornar uma expert em brigadeiros sem fogo.</p>
+                    <p>Comece assistindo a aula de boas-vindas abaixo:</p>
+                </div>
+                
+                <div class="content-box">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/mQ8YF_LeUNU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h3>Aula de Boas-vindas: Introdução ao Método Brigadeiro Sem Fogo</h3>
+                    <p>Nesta aula, você conhecerá como funciona o método exclusivo de preparo de brigadeiros sem precisar usar o fogão, economizando tempo e garantindo um resultado perfeito sempre.</p>
+                </div>
+                
+                <div class="content-box" id="aulas">
+                    <h2 class="section-title">Módulos do Curso</h2>
+                    <div class="courses-grid">
+                        <div class="course-card">
+                            <img src="img/modulo1.jpg" alt="Módulo 1" class="course-img">
+                            <div class="course-content">
+                                <h3 class="course-title">Módulo 1</h3>
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/mQ8YF_LeUNU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                <a href="#modulo1" class="course-button">Começar</a>
+                            </div>
+                        </div>
+                        <div class="course-card">
+                            <img src="img/modulo2.jpg" alt="Módulo 2" class="course-img">
+                            <div class="course-content">
+                                <h3 class="course-title">Módulo 2</h3>
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/QW9Gyn4nfi8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                <a href="#modulo2" class="course-button">Começar</a>
+                            </div>
+                        </div>
+                        <div class="course-card">
+                            <img src="img/modulo3.jpg" alt="Módulo 3" class="course-img">
+                            <div class="course-content">
+                                <h3 class="course-title">Módulo 3</h3>
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/id-h8NP2w44" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                <a href="#modulo3" class="course-button">Começar</a>
+                            </div>
+                        </div>
+                        <div class="course-card">
+                            <img src="img/modulo4.jpg" alt="Módulo 4" class="course-img">
+                            <div class="course-content">
+                                <h3 class="course-title">Módulo 4</h3>
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/E_BdYQogx5A" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                <a href="#modulo4" class="course-button">Começar</a>
+                            </div>
+                        </div>
+                        <div class="course-card">
+                            <img src="img/modulo5.jpg" alt="Módulo 5" class="course-img">
+                            <div class="course-content">
+                                <h3 class="course-title">Módulo 5</h3>
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/sb63EFFeQZs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                <a href="#modulo5" class="course-button">Começar</a>
+                            </div>
+                        </div>
+                        <div class="course-card">
+                            <img src="img/modulo6.jpg" alt="Módulo 6" class="course-img">
+                            <div class="course-content">
+                                <h3 class="course-title">Módulo 6</h3>
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/h_xXn_buDWA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                <a href="#modulo6" class="course-button">Começar</a>
+                            </div>
+                        </div>
+                        <div class="course-card">
+                            <img src="img/modulo7.jpg" alt="Módulo 7" class="course-img">
+                            <div class="course-content">
+                                <h3 class="course-title">Módulo 7</h3>
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/XQBaeavhV5o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                <a href="#modulo7" class="course-button">Começar</a>
+                            </div>
+                        </div>
+                        <div class="course-card">
+                            <img src="img/modulo8.jpg" alt="Módulo 8" class="course-img">
+                            <div class="course-content">
+                                <h3 class="course-title">Módulo 8</h3>
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/1Rf0CcSxRcU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                <a href="#modulo8" class="course-button">Começar</a>
+                            </div>
+                        </div>
+                        <div class="course-card">
+                            <img src="img/modulo9.jpg" alt="Módulo 9" class="course-img">
+                            <div class="course-content">
+                                <h3 class="course-title">Módulo 9</h3>
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/yun1ojyzshU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                <a href="#modulo9" class="course-button">Começar</a>
+                            </div>
+                        </div>
+                        <div class="course-card">
+                            <img src="img/modulo10.jpg" alt="Módulo 10" class="course-img">
+                            <div class="course-content">
+                                <h3 class="course-title">Módulo 10</h3>
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/SAdRlp5J1RU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                <a href="#modulo10" class="course-button">Começar</a>
+                            </div>
+                        </div>
+                        <div class="course-card">
+                            <img src="img/modulo11.jpg" alt="Módulo 11" class="course-img">
+                            <div class="course-content">
+                                <h3 class="course-title">Módulo 11</h3>
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/xQtAWjOMprY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                                <a href="#modulo11" class="course-button">Começar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-box" id="receitas">
+                    <h2 class="section-title">Receitas Favoritas</h2>
+                    
+                    <div class="recipe-card">
+                        <h3 class="recipe-title">Brigadeiro Tradicional Sem Fogo</h3>
+                        <p class="recipe-description">O clássico brigadeiro com nosso método exclusivo que não vai ao fogo, mantém formato perfeito e dura até 15 dias.</p>
+                        
+                        <div class="recipe-section">
+                            <h4 class="recipe-section-title">Ingredientes:</h4>
+                            <ul class="recipe-list">
+                                <li>1 lata de leite condensado (395g)</li>
+                                <li>3 colheres de sopa de chocolate em pó 50% cacau</li>
+                                <li>2 colheres de sopa de manteiga sem sal (em temperatura ambiente)</li>
+                                <li>1 colher de chá de essência de baunilha</li>
+                                <li>Granulado ou confeitos para decorar</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="recipe-section">
+                            <h4 class="recipe-section-title">Modo de Preparo:</h4>
+                            <ol class="recipe-list recipe-steps">
+                                <li>Em uma tigela, adicione o leite condensado e o chocolate em pó. Misture bem até ficar homogêneo.</li>
+                                <li>Acrescente a manteiga em temperatura ambiente e a essência de baunilha.</li>
+                                <li>Com um batedor de arame (fouet), bata vigorosamente por 5 minutos até obter uma mistura cremosa e mais firme.</li>
+                                <li>Leve à geladeira por 30 minutos.</li>
+                                <li>Retire da geladeira e, com as mãos levemente untadas com manteiga, faça bolinhas do tamanho desejado.</li>
+                                <li>Passe as bolinhas no granulado ou confeito de sua preferência.</li>
+                                <li>Coloque em forminhas e deixe descansar por mais 15 minutos antes de servir.</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="recipe-tip">
+                            <strong>Dica Especial:</strong> Para um brigadeiro mais firme, adicione 1 colher de sopa de amido de milho à mistura inicial.
+                        </div>
+                    </div>
+                    
+                    <div class="recipe-card">
+                        <h3 class="recipe-title">Brigadeiro de Leite Ninho Sem Fogo</h3>
+                        <p class="recipe-description">Delicioso brigadeiro branco com sabor de leite em pó, cremoso e que derrete na boca.</p>
+                        
+                        <div class="recipe-section">
+                            <h4 class="recipe-section-title">Ingredientes:</h4>
+                            <ul class="recipe-list">
+                                <li>1 lata de leite condensado (395g)</li>
+                                <li>4 colheres de sopa de leite em pó (Ninho ou similar)</li>
+                                <li>2 colheres de sopa de manteiga sem sal (em temperatura ambiente)</li>
+                                <li>1 colher de chá de essência de baunilha</li>
+                                <li>Leite em pó para decorar</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="recipe-section">
+                            <h4 class="recipe-section-title">Modo de Preparo:</h4>
+                            <ol class="recipe-list recipe-steps">
+                                <li>Em uma tigela, adicione o leite condensado e o leite em pó. Misture bem até ficar homogêneo.</li>
+                                <li>Acrescente a manteiga em temperatura ambiente e a essência de baunilha.</li>
+                                <li>Com um batedor de arame (fouet), bata vigorosamente por 6 minutos até obter uma mistura bem cremosa e mais firme.</li>
+                                <li>Leve à geladeira por 40 minutos.</li>
+                                <li>Retire da geladeira e, com as mãos levemente untadas com manteiga, faça bolinhas do tamanho desejado.</li>
+                                <li>Passe as bolinhas no leite em pó.</li>
+                                <li>Coloque em forminhas e deixe descansar por mais 15 minutos antes de servir.</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="recipe-tip">
+                            <strong>Dica Especial:</strong> Para uma decoração diferenciada, misture leite em pó com um pouco de canela em pó para passar as bolinhas.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-box" id="boas-praticas">
+                    <h2 class="section-title">Boas Práticas de Confeitaria</h2>
+                    <div class="recipe-card">
+                        <h3 class="recipe-title">Cuidados Essenciais na Preparação</h3>
+                        <ul class="recipe-list">
+                            <li>Sempre higienize bem as mãos antes de manipular os ingredientes</li>
+                            <li>Utilize utensílios limpos e secos</li>
+                            <li>Mantenha o ambiente de trabalho organizado</li>
+                            <li>Use luvas descartáveis ao enrolar os brigadeiros</li>
+                            <li>Evite misturar aromas de alimentos no mesmo ambiente</li>
+                            <li>Mantenha ingredientes sensíveis refrigerados até o momento do uso</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="content-box" id="vendas">
+                    <h2 class="section-title">Estratégias de Vendas</h2>
+                    <div class="recipe-card">
+                        <h3 class="recipe-title">Como Precificar seus Brigadeiros</h3>
+                        <p class="recipe-description">Um guia prático para definir preços que garantam lucro e sejam competitivos no mercado.</p>
+                        
+                        <div class="recipe-section">
+                            <h4 class="recipe-section-title">Fórmula básica de precificação:</h4>
+                            <ol class="recipe-list recipe-steps">
+                                <li>Calcule o custo total dos ingredientes para determinada quantidade de brigadeiros</li>
+                                <li>Divida este valor pelo número de unidades para obter o custo por brigadeiro</li>
+                                <li>Multiplique o custo por 3 para uma margem de lucro básica</li>
+                                <li>Adicione o custo das embalagens e rótulos</li>
+                                <li>Considere o tempo de preparo e o valor da sua hora de trabalho</li>
+                            </ol>
+                        </div>
+                        
+                        <div class="recipe-tip">
+                            <strong>Dica de Ouro:</strong> Para brigadeiros gourmet, a margem de lucro pode ser maior. Multiplique por 4 ou 5 o custo dos ingredientes, pois o público entende o valor agregado em produtos especiais.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Simular login/autenticação básica
+        document.addEventListener('DOMContentLoaded', function() {
+            // Verificar se já tem um nome salvo
+            const savedName = localStorage.getItem('alunaName');
+            if (savedName) {
+                document.querySelector('.user-name').textContent = savedName;
+                document.querySelector('.avatar').textContent = savedName.charAt(0);
+            } else {
+                // Se não tiver, pede para inserir
+                setTimeout(() => {
+                    const userName = prompt('Olá! Como gostaria de ser chamada?', 'Aluna');
+                    if (userName && userName.trim() !== '') {
+                        document.querySelector('.user-name').textContent = userName;
+                        document.querySelector('.avatar').textContent = userName.charAt(0);
+                        localStorage.setItem('alunaName', userName);
+                    }
+                }, 1000);
+            }
+            
+            // Navegação suave para links internos
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    
+                    // Remove a classe active de todos os itens do menu
+                    document.querySelectorAll('.menu-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // Adiciona a classe active ao item clicado
+                    this.parentElement.classList.add('active');
+                    
+                    if (targetId === '#') {
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+                    } else {
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
+</html> 
