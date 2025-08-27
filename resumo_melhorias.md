@@ -1,4 +1,4 @@
-# Resumo das Melhorias Implementadas no Quiz "Brigadeiro Sem Fogo"
+# Resumo das Melhorias Implementadas no Quiz "Doces Criativos e Virais"
 
 ## 1. Melhorias na Interface do Quiz
 
