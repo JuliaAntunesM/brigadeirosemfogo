@@ -484,6 +484,8 @@
     </div>
 
     <script>
+        // Controle global de moedas acumuladas durante o quiz
+        let coinTotal = 0;
         // Atualizar a barra de progresso com base na pergunta atual
         function updateProgressBar(questionId) {
             const totalQuestions = 10;
@@ -513,6 +515,12 @@
                             
                             // Se for a página de resultados, inicia a animação de contagem
                             if (id === 'question11') {
+                                // Garante que o header reflita o total atual
+                                const headerCoins = document.getElementById('coin-amount');
+                                if (headerCoins) headerCoins.textContent = coinTotal;
+                                // Zera a exibição antes de animar e dispara a animação
+                                const totalEl = document.getElementById('total-coins');
+                                if (totalEl) totalEl.textContent = '0';
                                 animateCoinsCount();
                                 // Inicializa o carrossel de depoimentos
                                 initCarousel();
@@ -525,6 +533,10 @@
             // Atualiza a barra de progresso
             updateProgressBar(id);
             
+            // Sincroniza o contador visual do header com o total global
+            const headerCoins = document.getElementById('coin-amount');
+            if (headerCoins) headerCoins.textContent = coinTotal;
+
             // Rola para o topo
             window.scrollTo(0, 0);
             
@@ -539,7 +551,8 @@
         
         // Função para animar a contagem de moedas
         function animateCoinsCount() {
-            const finalValue = parseInt(document.getElementById('coin-amount').textContent);
+            // Usa a variável global para garantir o valor correto ao chegar na página de vendas
+            const finalValue = typeof coinTotal === 'number' ? coinTotal : parseInt(document.getElementById('coin-amount').textContent) || 0;
             const totalCoinsElement = document.getElementById('total-coins');
             let startValue = 0;
             const duration = 2000; // 2 segundos
@@ -708,11 +721,10 @@
         }
         
         function addCoins(amount) {
-            // Atualiza o contador de moedas
+            // Atualiza a variável global e o contador visual no header
+            coinTotal = (typeof coinTotal === 'number' ? coinTotal : 0) + (Number(amount) || 0);
             let coinAmountElement = document.getElementById('coin-amount');
-            let currentCoins = parseInt(coinAmountElement.textContent);
-            let newAmount = currentCoins + amount;
-            coinAmountElement.textContent = newAmount;
+            coinAmountElement.textContent = coinTotal;
             
             // Adiciona efeito de destaque
             coinAmountElement.classList.add('highlight');
@@ -723,11 +735,11 @@
             // Cria o efeito de moeda flutuante
             const coinPopup = document.createElement('div');
             coinPopup.className = 'coin-popup';
-            coinPopup.textContent = '+' + amount + ' 💰';
+            coinPopup.textContent = '+' + amount + ' ';
             
-            // Posiciona o popup próximo ao cursor (ou centro da tela em dispositivos móveis)
-            const mouseX = event ? event.clientX : window.innerWidth / 2;
-            const mouseY = event ? event.clientY : window.innerHeight / 2;
+            // Posiciona o popup no centro da tela para evitar dependência do evento do mouse
+            const mouseX = window.innerWidth / 2;
+            const mouseY = window.innerHeight / 2;
             
             coinPopup.style.left = mouseX + 'px';
             coinPopup.style.top = mouseY + 'px';
@@ -746,6 +758,7 @@
             updateProgressBar('question1');
             
             // Garante que o contador de moedas comece em 0
+            coinTotal = 0;
             document.getElementById('coin-amount').textContent = '0';
             
             // Animação do texto de carregamento
