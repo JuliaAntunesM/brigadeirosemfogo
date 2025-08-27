@@ -198,6 +198,16 @@ h2 {
     font-weight: 500;
 }
 
+/* Imagem de destaque no início do quiz */
+.intro-image {
+    width: 100%;
+    max-width: 460px;
+    display: block;
+    margin: 10px auto 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
 /* Opções de resposta */
 .options {
     display: flex;
