@@ -486,6 +486,8 @@
     <script>
         // Controle global de moedas acumuladas durante o quiz
         let coinTotal = 0;
+        // Controle de perguntas já pontuadas (+5 por pergunta, apenas uma vez)
+        const visitedQuestions = new Set();
         // Atualizar a barra de progresso com base na pergunta atual
         function updateProgressBar(questionId) {
             const totalQuestions = 10;
@@ -500,6 +502,14 @@
         }
         
         function showQuestion(id) {
+            // Ao entrar em uma nova pergunta (1..10), soma +5 apenas na primeira visita
+            if (id && !visitedQuestions.has(id) && id.startsWith('question')) {
+                const qNum = parseInt(id.replace('question', ''));
+                if (!isNaN(qNum) && qNum >= 1 && qNum <= 10) {
+                    visitedQuestions.add(id);
+                    addCoins(5);
+                }
+            }
             // Esconde todas as perguntas com animação
             document.querySelectorAll('.question-container:not(.hidden)').forEach(el => {
                 el.style.opacity = 0;
@@ -760,6 +770,11 @@
             // Garante que o contador de moedas comece em 0
             coinTotal = 0;
             document.getElementById('coin-amount').textContent = '0';
+            // Marca a question1 como visitada e concede +5 pontos iniciais
+            if (!visitedQuestions.has('question1')) {
+                visitedQuestions.add('question1');
+                addCoins(5);
+            }
             
             // Animação do texto de carregamento
             const loadingTexts = [
